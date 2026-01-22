@@ -4,11 +4,18 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    for(let i =0;i<nums.length;i++){
-    for(let j =i+1;j<nums.length;j++){
-        if(nums[i]+nums[j]==target){
-            return [i,j]
-        }
+   const h = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        h.set(nums[i], i);
+    }
+ 
+    for (let i = 0; i < nums.length; i++) {
+        const y = target - nums[i];
+        if (h.has(y) && h.get(y) !== i) {
+            return [i, h.get(y)];
         }
     }
+ 
+    throw new Error("No two sum solution");
+
 };
